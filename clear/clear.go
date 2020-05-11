@@ -9,6 +9,7 @@ import (
 var clear map[string]func() // Create a map for storing clear funcs 
 
 func init() { 
+
 	clear = make(map[string]func()) 
 	
     clear["linux"] = func() { 
@@ -18,17 +19,18 @@ func init() {
 	} 
 	
     clear["windows"] = func() { 
-     cmd := exec.Command("cmd", "/c", "cls")
-     cmd.Stdout = os.Stdout 
-     cmd.Run() 
+		cmd := exec.Command("cmd", "/c", "cls")
+		cmd.Stdout = os.Stdout 
+		cmd.Run() 
     } 
 } 
 
 func CallClear() { 
-    value, ok := clear[runtime.GOOS] // Runtime.GOOS -> linux, windows, darwin etc. 
+
+	value, ok := clear[runtime.GOOS] // Runtime.GOOS -> Linux, Windows, etc. 
     if ok { 
-     value() 
+     	value() 
     } else { 
-     panic("Su plataforma no esta soportada para limpiar la pantalla: (") 
+     	panic("Su plataforma no esta soportada para limpiar pantalla: (") 
     } 
 } 

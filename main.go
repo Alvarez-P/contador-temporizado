@@ -13,7 +13,7 @@ import (
 func main() { 
 
 	/*
-		Contador de 40 digitos con limite dado por el usuario.
+		Contador de 40 digitos con limite de ejecucion dado por el usuario.
 	*/
 
 	menu := `Ingresa la cantidad en minutos a ejecutar el programa: `
@@ -26,7 +26,7 @@ func main() {
 	
 	limit, _ := strconv.Atoi(selection) 
 	t0 := time.Now()
-	
+
 	for {
 		t1 := time.Now()
 		tt := t1.Sub(t0)
