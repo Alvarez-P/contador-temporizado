@@ -16,24 +16,30 @@ import (
 func WithLimit () {
 	screen.MoveTopLeft() 
 	cont := 0
-	menu_limit := "Ingrese el limite de tiempo: "
+	menu_limit := "Ingrese el limite de tiempo(minutos) con un máximo de 5: "
 	fmt.Print(menu_limit)
 	reader_limit := bufio.NewReader(os.Stdin)
 	input_limit, _ := reader_limit.ReadString('\n') 			// Leer hasta el separador de salto de línea
 	selection_limit := strings.TrimRight(input_limit, "\r\n") 	// Remover el salto de línea de la entrada del usuario
-	
-	limit, _ := strconv.ParseFloat(selection_limit, 64) 
+	limit, _ := strconv.Atoi(selection_limit)
+	if limit > 5 {
+		fmt.Println("Debe ser un valor igual o menor a 5")
+		return 
+	} 
+	limit = limit * 60000
+	selection_limit = strconv.Itoa(limit) + "ms"
+	limitms, _ := time.ParseDuration(selection_limit)
 	t0 := time.Now()
 	screen.Clear()
+
 	for {
 		t1 := time.Now()
 		tt := t1.Sub(t0)
-		elapsed := tt.Minutes()					// Calculamos minutos transcurridos
-		if (limit <= elapsed) {					// Valida fin del ciclo
+		if (limitms <= tt) {					// Valida fin del ciclo
 			break
 		}
 		screen.MoveTopLeft() 							
-		fmt.Printf("%040d\n", cont) 
+		fmt.Printf("%040d", cont) 
 		cont++ 
 	}
 }
@@ -46,16 +52,13 @@ func format(duration time.Duration, cont int) string {
 	m := duration / time.Minute
 	duration -= m * time.Minute
 	s := duration / time.Second
-	duration -= s * time.Second
-	ms := duration / time.Millisecond	
-	return fmt.Sprintf("[%02d:%02d:%02d] | %040d\n", m, s, ms, cont)
+	return fmt.Sprintf("[%02d:%02d] | %040d", m, s, cont)
 }
 
 /*
 	WithoutLimit realiza un ciclo infinito imprimiendo un cronometro y un contador. 
 */
 func WithoutLimit () {
-
 	cont := 0
 	t0 := time.Now()
 	for {
@@ -63,7 +66,7 @@ func WithoutLimit () {
 		tt := t1.Sub(t0)
 		screen.MoveTopLeft() 						// Limpia pantalla
 		durStr := format(tt, cont)
-		fmt.Println(durStr)
+		fmt.Print(durStr)
 		cont++ 
 	}
 }

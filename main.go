@@ -14,7 +14,8 @@ import (
 ) 
 
 func main() { 
-	menu := `Ingrese una opción: 
+	menu := `
+Ingrese una opción: 
 [1] Con limite de tiempo
 [2] Ciclo infinito
 [3] Salir
@@ -26,7 +27,6 @@ func main() {
 		input, _ := reader.ReadString('\n') 			// Leer hasta el separador de salto de línea
 		selection = strings.TrimRight(input, "\r\n")  	// Remover el salto de línea de la entrada del usuario
 		screen.Clear()
-
 		switch selection {
 		case "1":
 			cicle.WithLimit()
