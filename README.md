@@ -18,8 +18,12 @@ Contador de 40 digitos con limite de ejecucion dado por el usuario desarrolado e
 go run main.go
 ```
 
-## Built With
+## Build With
 
-- [GOlang](https://golang.org/) - Go is an open source programming language that makes it easy to build **simple**, **reliable**, and **efficient** software.
+```
+go build
+```
+
+- [Golang](https://golang.org/) - Go is an open source programming language that makes it easy to build **simple**, **reliable**, and **efficient** software.
 
 Made with ❤️ by [Adolfo Alvarez](https://github.com/alvarez98)
