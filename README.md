@@ -24,6 +24,6 @@ go run main.go
 go build
 ```
 
-- [GOlang](https://golang.org/) - Go is an open source programming language that makes it easy to build **simple**, **reliable**, and **efficient** software.
+- [Golang](https://golang.org/) - Go is an open source programming language that makes it easy to build **simple**, **reliable**, and **efficient** software.
 
 Made with ❤️ by [Adolfo Alvarez](https://github.com/alvarez98)
