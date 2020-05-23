@@ -25,18 +25,18 @@ Ingrese una opción:
     	fmt.Print(menu)
 		reader := bufio.NewReader(os.Stdin)
 		input, _ := reader.ReadString('\n') 			// Leer hasta el separador de salto de línea
-		selection = strings.TrimRight(input, "\r\n")  	// Remover el salto de línea de la entrada del usuario
-		screen.Clear()
+		selection = strings.TrimRight(input, "\r\n")	// Remover el salto de línea de la entrada del usuario
+		screen.Clear()  	
 		switch selection {
 		case "1":
 			cicle.WithLimit()
 		case "2":
 			cicle.WithoutLimit()
 		case "3":
-			fmt.Println("Saliendo ...")
-			os.Exit(3)
+			fmt.Print("\rSaliendo ...")
+			os.Exit(0)
 		default:
-			screen.Clear() 
+			screen.MoveTopLeft()
 		}
 	} 
 } 
