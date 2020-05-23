@@ -21,21 +21,20 @@ func WithLimit () {
 	input_limit, _ := reader_limit.ReadString('\n') 			// Leer hasta el separador de salto de línea
 	selection_limit := strings.TrimRight(input_limit, "\r\n") 	// Remover el salto de línea de la entrada del usuario
 	limit, _ := strconv.Atoi(selection_limit)
+	
 	if limit > 5 {
 		fmt.Println("\rDebe ser un valor igual o menor a 5")
 		return 
 	} 
-	limit = limit * 60000
-	selection_limit = strconv.Itoa(limit) + "ms"
+	selection_limit = strconv.Itoa(limit) + "m"
 	limitms, _ := time.ParseDuration(selection_limit)
 	screen.Clear() 
 	screen.MoveTopLeft()
-	t0 := time.Now()
+	tf := time.Now().Add(limitms)
 
 	for {
-		t1 := time.Now()
-		tt := t1.Sub(t0)
-		if (limitms <= tt) {					// Valida fin del ciclo
+		tn := time.Now()
+		if (tn.After(tf)) {					// Valida fin del ciclo
 			break
 		}							
 		fmt.Printf("\r%040d", cont) 
